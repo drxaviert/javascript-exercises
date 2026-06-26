@@ -1,6 +1,6 @@
 const fibonacci = function (num) {
   if (num >= 0) {
-    let sequence = [0, 1, 1];
+    let sequence = [0, 1];
 
     for (let i = 0; i <= num - 2; i++) {
       let next = sequence.at(-2) + sequence.at(-1);
