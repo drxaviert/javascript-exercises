@@ -1,27 +1,43 @@
+const people = [
+  {
+    name: "Carly",
+    yearOfBirth: 1942,
+    yearOfDeath: 1970,
+  },
+  {
+    name: "Ray",
+    yearOfBirth: 1962,
+    yearOfDeath: 2011,
+  },
+  {
+    name: "Jane",
+    yearOfBirth: 1912,
+    yearOfDeath: 1941,
+  },
+];
+
+function getAge(birth, death) {
+  if (!death) {
+    let currentYear = new Date().getFullYear();
+    return currentYear - birth;
+  } else {
+    return death - birth;
+  }
+}
+
 const findTheOldest = function (people) {
-  return people.reduce((prev, current) => {
-    let prevLatestYear, currentLatestYear;
+  return people.reduce((prev, curr) => {
+    let prevAge = getAge(prev.yearOfBirth, prev.yearOfDeath);
+    let currAge = getAge(curr.yearOfBirth, curr.yearOfDeath);
 
-    if ("yearOfDeath" in prev) {
-      prevLatestYear = prev["yearOfDeath"];
-    } else {
-      prevLatestYear = new Date().getFullYear();
-    }
-    if ("yearOfDeath" in current) {
-      currentLatestYear = current["yearOfDeath"];
-    } else {
-      currentLatestYear = new Date().getFullYear();
-    }
+    console.log([prevAge, currAge]);
 
-    let prevAge = prevLatestYear - prev.yearOfBirth;
-    let currentAge = currentLatestYear - current.yearOfBirth;
-
-    if (prevAge >= currentAge) {
-      result = prev;
+    if (prevAge > currAge) {
+      console.log(prev);
       return prev;
     } else {
-      result = current;
-      return current;
+      console.log(curr);
+      return curr;
     }
   });
 };

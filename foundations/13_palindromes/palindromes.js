@@ -1,16 +1,22 @@
 const palindromes = function (strArg) {
-  let strArr = strArg
-    .split("")
-    .map((letter) => letter.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""))
-    .filter((letter) => letter != "");
+  let alphabet = "abcdefghjklmnopqrstuvwhyz0123456789";
+  let strArr = strArg.toLowerCase().split("");
 
-  let strFirstHalf = strArr.slice(0, Math.ceil(strArr.length / 2)).join("");
-  let strSecondHalf = strArr
-    .slice(Math.floor(strArr.length / 2))
-    .reverse()
-    .join("");
+  // console.log(strArr);
 
-  if (strFirstHalf === strSecondHalf) {
+  strArr = strArr.filter((char) => {
+    // console.log(char);
+    return alphabet.includes(char);
+  });
+
+  // console.log(strArr);
+
+  let forward = strArr.join("");
+  let backward = strArr.reverse().join("");
+
+  // console.log([forward, backward]);
+
+  if (forward === backward) {
     return true;
   } else {
     return false;
